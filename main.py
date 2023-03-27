@@ -27,7 +27,8 @@ def convert_to_list(exp: str) -> list:
             exp = start + (element[1:] if element[0] == '+' else element) + finish
             i = 0
         i += 1
-    exp = [int(char) if char.isdigit() or char[1:].isdigit() else char for char in exp]
+    exp = [float(char) if char.replace('.', '').isdigit() or
+                          char[1:].replace('.', '').isdigit() else char for char in exp]
     return exp[1:] if exp[0] == '+' else exp
 
 
@@ -85,7 +86,7 @@ def self_eval(exp: str) -> int | float:
 #     print(f'eval = {eval(expression)}')
 #     print(f'{exp_list} = {calculate(exp_list, 5)}')
 
-expres = "((2 * 3 - (20 - 5)) - ((3 * (10 - 2))) * (-1))"
+expres = "11.1 + (2 + 3) - (4 + 5) - (6 + 7 * -(8 + 9))"
 print('eval')
 print(eval(expres))
 print('my_eval:')
